@@ -31,6 +31,7 @@ export const expertiseData: ExpertiseData[] = [
     description:
       "As a Web developer, I specialize in creating visually appealing and highly interactive web experiences. With a keen eye for design and a strong understanding of user experience, I focus on transforming complex ideas into intuitive, responsive interfaces. ",
     techStacks: [
+      "HTML",
       "React JS",
       "Vue",
       "Javascript",

@@ -52,6 +52,7 @@ const Expertise = (): ReactElement => {
         spacing={2}
         flexWrap={"wrap"}
         columns={{ xs: 4, sm: 8, md: 12 }}
+        data-aos="fade-up"
       >
         {renderGridComponent(expertiseData)}
       </Grid2>

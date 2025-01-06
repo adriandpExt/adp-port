@@ -24,6 +24,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container } from "./common";
 
 import { timelineData } from "@/utils";
+import Card from "@mui/material/Card";
 
 const StyledTimeline = styled(MuiTimeline)({
   [`& .${timelineItemClasses.root}:before`]: {
@@ -42,14 +43,14 @@ const StyledTimelineOppositeContent = styled(TimelineOppositeContent)({
 });
 
 const StyledTimelineDot = styled(TimelineDot)({
-  backgroundColor: "blue",
+  backgroundColor: "#399918",
   padding: "1rem",
 });
 
 const StyledTimelineConnector = styled(TimelineConnector)({
   height: "auto",
   minHeight: "50px",
-  borderLeft: "2px solid blue",
+  borderLeft: "5px solid #399918",
 });
 
 const StyledTimelineContent = styled(TimelineContent)({
@@ -58,13 +59,12 @@ const StyledTimelineContent = styled(TimelineContent)({
   flexDirection: "column",
   gap: 5,
   padding: "1rem",
-  backgroundColor: "#f9f9f9",
   marginLeft: "50px",
   marginTop: "10px",
 });
 
 const Timeline = (): ReactElement => {
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("lg"));
 
   const renderDescription = (description: string): ReactElement => {
     const lines = description.split("\n").map((line) => line.trim());
@@ -89,7 +89,11 @@ const Timeline = (): ReactElement => {
   const renderTimelineItems = (data: TimelineData[]): ReactElement[] => {
     return data.map((item, ids) => (
       <TimelineItem key={ids}>
-        <StyledTimelineOppositeContent align="center" fontWeight={500}>
+        <StyledTimelineOppositeContent
+          align="center"
+          fontWeight={500}
+          data-aos="fade-right"
+        >
           {item.duration}
         </StyledTimelineOppositeContent>
 
@@ -101,14 +105,23 @@ const Timeline = (): ReactElement => {
           <StyledTimelineConnector />
         </TimelineSeparator>
 
-        <StyledTimelineContent>
-          <Typography variant="h6" component="span">
-            {item.jobTitle}
-          </Typography>
-          <Typography variant="body1" fontWeight={500}>
-            {item.company}
-          </Typography>
-          {renderDescription(item.description)}
+        <StyledTimelineContent data-aos="fade-left">
+          <Card
+            elevation={4}
+            sx={{
+              backgroundColor: "whitesmoke",
+              padding: 4,
+              borderRadius: "8px",
+            }}
+          >
+            <Typography variant="h6" component="span">
+              {item.jobTitle}
+            </Typography>
+            <Typography variant="body1" fontWeight={500}>
+              {item.company}
+            </Typography>
+            {renderDescription(item.description)}
+          </Card>
         </StyledTimelineContent>
       </TimelineItem>
     ));
@@ -125,7 +138,7 @@ const Timeline = (): ReactElement => {
           <StyledTimelineConnector />
         </TimelineSeparator>
 
-        <StyledTimelineContent>
+        <StyledTimelineContent data-aos="fade-up">
           <Typography variant="h6" component="span">
             {item.jobTitle}
           </Typography>

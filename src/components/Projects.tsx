@@ -1,6 +1,6 @@
 import { RenderGridCardProps } from "@/types";
 
-import { memo, ReactElement, useRef } from "react";
+import { memo, ReactElement, useRef, useState } from "react";
 
 import Grid2 from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
@@ -25,11 +25,12 @@ const getRandomColor = () => {
 
 const RenderGridCard = memo((props: RenderGridCardProps): ReactElement => {
   const { src, title } = props;
+  const [isHovered, setIsHovered] = useState(false);
 
   const randomColor = useRef(getRandomColor());
 
   return (
-    <Grid2 size={6}>
+    <Grid2 size={6} data-aos="zoom-in-up">
       <Box
         sx={{
           backgroundColor: randomColor.current,
@@ -38,13 +39,20 @@ const RenderGridCard = memo((props: RenderGridCardProps): ReactElement => {
           padding: "3rem",
           overflow: "hidden",
         }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <img
           loading="lazy"
           src={src}
           width={"100%"}
           height={"100%"}
-          style={{ backgroundRepeat: "no-repeat", objectFit: "contain" }}
+          style={{
+            backgroundRepeat: "no-repeat",
+            objectFit: "contain",
+            transition: "transform 0.3s ease, opacity 0.3s ease",
+            transform: isHovered ? "scale(1.3)" : "scale(1)",
+          }}
         />
       </Box>
 

@@ -1,13 +1,21 @@
 import { ContactForm } from "@/types";
 
 import { ReactElement, useRef, useState } from "react";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import { AtSignIcon, SendHorizontal, User2Icon } from "lucide-react";
+
 import { useFormik } from "formik";
-
-import { SendHorizontal } from "lucide-react";
-
 import emailjs from "@emailjs/browser";
 
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import {
+  Button,
+  Card,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 import { Container } from "./common";
 
@@ -18,6 +26,26 @@ import {
   publicKey,
   serviceKey,
 } from "@/utils";
+
+const Loader = styled("div")`
+  width: 25px;
+  padding: 5px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffffff;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+
+  @keyframes l3 {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+`;
 
 const Contact = (): ReactElement => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,12 +61,12 @@ const Contact = (): ReactElement => {
         })
         .then(
           () => {
-            console.log("SUCCESS!");
+            toast.success("Submitted Successfully!");
             setIsLoading(false);
             contactForm.resetForm();
           },
           (error) => {
-            console.log("FAILED...", error.text);
+            toast.error("FAILED...", error.text);
             setIsLoading(false);
           }
         );
@@ -48,76 +76,105 @@ const Contact = (): ReactElement => {
   const contactForm = useFormik<ContactForm>({
     initialValues: contactFormInitial,
     validationSchema: contactFormValidation,
-    onSubmit: (e: ContactForm) => {
-      console.log(e);
-      sendEmail();
-    },
+    onSubmit: () => sendEmail(),
   });
 
   const renderForm = (): ReactElement => {
     return (
       <form ref={ref} onSubmit={contactForm.handleSubmit}>
-        <Stack gap={2}>
-          <TextField
-            type="text"
-            name="fullname"
-            variant="outlined"
-            label="Your name..."
-            fullWidth
-            value={contactForm.values.fullname}
-            onChange={contactForm.handleChange}
-            error={Boolean(
-              contactForm.touched.fullname && contactForm.errors.fullname
-            )}
-            helperText={
-              contactForm.touched.fullname && contactForm.errors.fullname
-            }
-          />
-          <TextField
-            type="email"
-            name="email"
-            variant="outlined"
-            label="Your email..."
-            fullWidth
-            value={contactForm.values.email}
-            onChange={contactForm.handleChange}
-            error={Boolean(
-              contactForm.touched.email && contactForm.errors.email
-            )}
-            helperText={contactForm.touched.email && contactForm.errors.email}
-          />
-          <TextField
-            type="text"
-            name="message"
-            variant="outlined"
-            label="Your message..."
-            fullWidth
-            multiline
-            rows={5}
-            value={contactForm.values.message}
-            onChange={contactForm.handleChange}
-            error={Boolean(
-              contactForm.touched.message && contactForm.errors.message
-            )}
-            helperText={
-              contactForm.touched.message && contactForm.errors.message
-            }
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{ gap: "0.5rem", alignItems: "center" }}
-          >
-            {isLoading ? (
-              "loading..."
-            ) : (
-              <>
-                Send message <SendHorizontal size={18} />
-              </>
-            )}
-          </Button>
-        </Stack>
+        <Card
+          elevation={10}
+          sx={{
+            backgroundColor: "whitesmoke",
+            width: "50%",
+            padding: 5,
+          }}
+        >
+          <Stack gap={2}>
+            <TextField
+              type="text"
+              name="fullname"
+              variant="outlined"
+              label="Your name..."
+              fullWidth
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <User2Icon />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+              value={contactForm.values.fullname}
+              onChange={contactForm.handleChange}
+              error={Boolean(
+                contactForm.touched.fullname && contactForm.errors.fullname
+              )}
+              helperText={
+                contactForm.touched.fullname && contactForm.errors.fullname
+              }
+            />
+            <TextField
+              type="email"
+              name="email"
+              variant="outlined"
+              label="Your email..."
+              fullWidth
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AtSignIcon />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+              value={contactForm.values.email}
+              onChange={contactForm.handleChange}
+              error={Boolean(
+                contactForm.touched.email && contactForm.errors.email
+              )}
+              helperText={contactForm.touched.email && contactForm.errors.email}
+            />
+            <TextField
+              type="text"
+              name="message"
+              variant="outlined"
+              label="Your message..."
+              fullWidth
+              multiline
+              rows={5}
+              value={contactForm.values.message}
+              onChange={contactForm.handleChange}
+              error={Boolean(
+                contactForm.touched.message && contactForm.errors.message
+              )}
+              helperText={
+                contactForm.touched.message && contactForm.errors.message
+              }
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{
+                gap: "0.5rem",
+                alignItems: "center",
+                backgroundColor: "#399918",
+                color: "#FFFFFF",
+              }}
+            >
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  Send message <SendHorizontal size={18} />
+                </>
+              )}
+            </Button>
+          </Stack>
+        </Card>
       </form>
     );
   };
@@ -129,6 +186,20 @@ const Contact = (): ReactElement => {
         happen!
       </Typography>
       {renderForm()}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </Container>
   );
 };
