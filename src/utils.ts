@@ -105,6 +105,6 @@ export const projectData: RenderGridCardProps[] = [
   },
   {
     src: icharge,
-    title: "iCharge - one-stop self-service mobile power bank rental service",
+    title: "iCharge - One-stop self-service mobile power bank rental service",
   },
 ];

@@ -1,8 +1,10 @@
 import { LabelValue } from "@/types";
 
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
+import { Menu } from "lucide-react";
 
 import { styled, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -11,61 +13,58 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import { navItems } from "@/utils";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { Menu } from "lucide-react";
-import Drawer from "./Drawer";
 import useScroll from "@/store/useScroll";
+import useNavigation from "@/store/useNavigation";
+
+import Drawer from "./Drawer";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   background: theme.palette.background.default,
   flexGrow: 1,
 }));
 
+const MenuButton = styled(Button)({
+  backgroundColor: "#0C0C0C",
+  color: "white",
+  boxShadow: "4px 4px 1px 0px #F97300",
+  transition: "background-color 0.3s ease, color 0.3s ease",
+  ":hover": {
+    color: "#F97300",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+  },
+});
+
 export const Navigation = (): ReactElement => {
-  const [open, setOpen] = useState<boolean>(false);
   const { scrollToSection } = useScroll();
+  const { isOpen, toggleDrawerClose, toggleDrawerOpen } = useNavigation();
   const theme = useTheme();
   const isMatches = useMediaQuery(theme.breakpoints.up("lg"));
 
-  // const scrollToSection = (sectionId: string) => {
-  //   const section = document.getElementById(sectionId);
-  //   if (section) {
-  //     section.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "start",
-  //     });
-  //   }
-  // };
-
   const renderMenuButton = (data: LabelValue[]): ReactElement => {
     return (
-      <Box>
+      <Box display={"flex"} gap={1}>
         {data.map((item) => (
-          <Button
+          <MenuButton
             key={item.value}
-            color="primary"
+            variant="text"
             onClick={() => scrollToSection(item.value)}
           >
             {item.label}
-          </Button>
+          </MenuButton>
         ))}
       </Box>
     );
   };
 
-  const toggleDrawerOpen = (): void => {
-    setOpen(!open);
-  };
-
-  const toggleDrawerClose = (): void => {
-    setOpen(!open);
-  };
-
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="fixed">
       <Toolbar sx={{ flexDirection: "row", justifyContent: "space-between" }}>
         <IconButton>
-          <Typography color="primary">{`<ADRIAN />`}</Typography>
+          <Typography
+            color="warning"
+            fontWeight={600}
+          >{`<ADRIAN />`}</Typography>
         </IconButton>
         {isMatches ? (
           renderMenuButton(navItems)
@@ -76,7 +75,7 @@ export const Navigation = (): ReactElement => {
         )}
       </Toolbar>
 
-      <Drawer open={open} onClose={toggleDrawerClose} item={navItems} />
+      <Drawer open={isOpen} onClose={toggleDrawerClose} item={navItems} />
     </StyledAppBar>
   );
 };

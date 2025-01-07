@@ -18,9 +18,24 @@ interface IDrawer {
 const StyledDrawer = styled(MuiDrawer)({
   flexShrink: 0,
   "& .MuiDrawer-paper": {
-    width: "100%",
+    width: "90%",
     height: "100%",
   },
+});
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+}));
+
+const MenuButton = styled(Typography)({
+  padding: "1rem",
+  backgroundColor: "#0C0C0C",
+  color: "white",
+  boxShadow: "8px 10px 1px 0px #F97300",
+  transition: "background-color 0.3s ease, color 0.3s ease",
 });
 
 export const Drawer = (props: IDrawer) => {
@@ -41,14 +56,7 @@ export const Drawer = (props: IDrawer) => {
       variant="temporary"
       anchor="right"
     >
-      <Paper
-        sx={{
-          backgroundColor: "whitesmoke",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <StyledPaper>
         <X
           size={100}
           strokeWidth={3}
@@ -62,19 +70,23 @@ export const Drawer = (props: IDrawer) => {
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
+          gap={3}
         >
           {item.map((nav) => (
-            <Typography
+            <MenuButton
               key={nav.label}
-              variant="h2"
-              fontWeight={700}
+              variant="h3"
+              fontWeight={600}
               onClick={() => handleToScroll(nav.value)}
+              data-aos="fade-down"
+              data-aos-easing="linear"
+              data-aos-duration="1500"
             >
               {nav.label.toUpperCase()}
-            </Typography>
+            </MenuButton>
           ))}
         </Stack>
-      </Paper>
+      </StyledPaper>
     </StyledDrawer>
   );
 };

@@ -31,7 +31,7 @@ const Hero = (): ReactElement => {
   const { toggleGithub, toggleLinkedin } = useSocialMediaStore();
 
   return (
-    <StyledContainer>
+    <StyledContainer id="home">
       <AboutSection>
         <Stack>
           <Stack sx={{ flexDirection: "row" }}>

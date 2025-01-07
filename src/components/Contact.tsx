@@ -47,6 +47,14 @@ const Loader = styled("div")`
   }
 `;
 
+const StyledButton = styled(Button)({
+  gap: "0.5rem",
+  alignItems: "center",
+  backgroundColor: "#0C0C0C",
+  color: "#FFFFFF",
+  boxShadow: "8px 8px 1px 0px #F97300",
+});
+
 const Contact = (): ReactElement => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const ref = useRef<HTMLFormElement>(null);
@@ -85,10 +93,8 @@ const Contact = (): ReactElement => {
         <Card
           elevation={10}
           sx={{
-            backgroundColor: "whitesmoke",
             borderTopRightRadius: "2rem",
             borderTopLeftRadius: "2rem",
-
             padding: 5,
           }}
         >
@@ -118,6 +124,7 @@ const Contact = (): ReactElement => {
                 contactForm.touched.fullname && contactForm.errors.fullname
               }
             />
+
             <TextField
               type="email"
               name="email"
@@ -141,6 +148,7 @@ const Contact = (): ReactElement => {
               )}
               helperText={contactForm.touched.email && contactForm.errors.email}
             />
+
             <TextField
               type="text"
               name="message"
@@ -159,18 +167,8 @@ const Contact = (): ReactElement => {
                 contactForm.touched.message && contactForm.errors.message
               }
             />
-            <Button
-              type="submit"
-              variant="contained"
-              fullWidth
-              sx={{
-                gap: "0.5rem",
-                alignItems: "center",
-                backgroundColor: "#0C0C0C",
-                color: "#FFFFFF",
-                boxShadow: "8px 8px 1px 0px #F97300",
-              }}
-            >
+
+            <StyledButton type="submit" variant="contained" fullWidth>
               {isLoading ? (
                 <Loader />
               ) : (
@@ -178,7 +176,7 @@ const Contact = (): ReactElement => {
                   Send message <SendHorizontal size={18} />
                 </>
               )}
-            </Button>
+            </StyledButton>
           </Stack>
         </Card>
       </form>

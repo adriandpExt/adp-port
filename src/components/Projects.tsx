@@ -3,14 +3,13 @@ import { RenderGridCardProps } from "@/types";
 import { memo, ReactElement, useRef } from "react";
 
 import Grid2 from "@mui/material/Grid2";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import { projectData } from "@/utils";
 
 import { Container } from "./common";
 import { styled, useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
+import { Card, useMediaQuery } from "@mui/material";
 
 const StyledImage = styled("img")({
   backgroundRepeat: "no-repeat",
@@ -44,19 +43,20 @@ const RenderGridCard = memo((props: RenderGridCardProps): ReactElement => {
 
   return (
     <Grid2 size={6} data-aos="zoom-in-up">
-      <Box
+      <Card
+        elevation={10}
         sx={{
           backgroundColor: randomColor.current,
-          borderRadius: "4px",
+          borderRadius: "0.5rem",
           height: "400px",
           padding: isMedium ? "3rem" : null,
           overflow: "hidden",
         }}
       >
         <StyledImage loading="lazy" src={src} width={"100%"} height={"100%"} />
-      </Box>
+      </Card>
 
-      <Typography variant="h5" marginTop={2}>
+      <Typography variant="h5" marginTop={2} fontWeight={600}>
         {title}
       </Typography>
     </Grid2>

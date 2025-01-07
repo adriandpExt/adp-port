@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
 
 import {
   Timeline as MuiTimeline,
@@ -20,11 +21,9 @@ import {
 
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { timelineData } from "@/utils";
 
 import { Container } from "./common";
-
-import { timelineData } from "@/utils";
-import Card from "@mui/material/Card";
 
 const StyledTimeline = styled(MuiTimeline)({
   [`& .${timelineItemClasses.root}:before`]: {
@@ -43,14 +42,15 @@ const StyledTimelineOppositeContent = styled(TimelineOppositeContent)({
 });
 
 const StyledTimelineDot = styled(TimelineDot)({
-  backgroundColor: "#399918",
+  backgroundColor: "#F97300",
+
   padding: "1rem",
 });
 
 const StyledTimelineConnector = styled(TimelineConnector)({
   height: "auto",
   minHeight: "50px",
-  borderLeft: "5px solid #399918",
+  borderLeft: "5px solid #F97300",
 });
 
 const StyledTimelineContent = styled(TimelineContent)({
@@ -107,9 +107,8 @@ const Timeline = (): ReactElement => {
 
         <StyledTimelineContent data-aos="fade-left">
           <Card
-            elevation={4}
+            elevation={10}
             sx={{
-              backgroundColor: "whitesmoke",
               padding: 4,
               borderRadius: "8px",
             }}
@@ -131,11 +130,11 @@ const Timeline = (): ReactElement => {
     return data.map((item, ids) => (
       <TimelineItem key={ids} position="right">
         <TimelineSeparator>
-          <StyledTimelineConnector />
-          <StyledTimelineDot>
+          <StyledTimelineConnector data-aos="zoom-in" />
+          <StyledTimelineDot data-aos="zoom-in">
             <FontAwesomeIcon icon={faBriefcase} size={isMobile ? "1x" : "3x"} />
           </StyledTimelineDot>
-          <StyledTimelineConnector />
+          <StyledTimelineConnector data-aos="zoom-in" />
         </TimelineSeparator>
 
         <StyledTimelineContent data-aos="fade-up">
