@@ -36,6 +36,9 @@ const Expertise = (): ReactElement => {
                   backgroundColor: "#FFFFFF",
                   borderColor: "#FFFFFF",
                   fontWeight: 600,
+                  ":hover": {
+                    transform: "scale(1.1)",
+                  },
                 }}
               />
             ))}

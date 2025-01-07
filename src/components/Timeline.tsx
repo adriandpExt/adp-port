@@ -98,11 +98,11 @@ const Timeline = (): ReactElement => {
         </StyledTimelineOppositeContent>
 
         <TimelineSeparator>
-          <StyledTimelineConnector />
-          <StyledTimelineDot>
+          <StyledTimelineConnector data-aos="zoom-in" />
+          <StyledTimelineDot data-aos="zoom-in">
             <FontAwesomeIcon icon={faBriefcase} size="3x" />
           </StyledTimelineDot>
-          <StyledTimelineConnector />
+          <StyledTimelineConnector data-aos="zoom-in" />
         </TimelineSeparator>
 
         <StyledTimelineContent data-aos="fade-left">

@@ -81,12 +81,14 @@ const Contact = (): ReactElement => {
 
   const renderForm = (): ReactElement => {
     return (
-      <form ref={ref} onSubmit={contactForm.handleSubmit}>
+      <form ref={ref} onSubmit={contactForm.handleSubmit} data-aos="fade-up">
         <Card
           elevation={10}
           sx={{
             backgroundColor: "whitesmoke",
-            width: "50%",
+            borderTopRightRadius: "2rem",
+            borderTopLeftRadius: "2rem",
+
             padding: 5,
           }}
         >
@@ -97,6 +99,7 @@ const Contact = (): ReactElement => {
               variant="outlined"
               label="Your name..."
               fullWidth
+              color="warning"
               slotProps={{
                 input: {
                   startAdornment: (
@@ -121,6 +124,7 @@ const Contact = (): ReactElement => {
               variant="outlined"
               label="Your email..."
               fullWidth
+              color="warning"
               slotProps={{
                 input: {
                   startAdornment: (
@@ -142,6 +146,7 @@ const Contact = (): ReactElement => {
               name="message"
               variant="outlined"
               label="Your message..."
+              color="warning"
               fullWidth
               multiline
               rows={5}
@@ -161,8 +166,9 @@ const Contact = (): ReactElement => {
               sx={{
                 gap: "0.5rem",
                 alignItems: "center",
-                backgroundColor: "#399918",
+                backgroundColor: "#0C0C0C",
                 color: "#FFFFFF",
+                boxShadow: "8px 8px 1px 0px #F97300",
               }}
             >
               {isLoading ? (

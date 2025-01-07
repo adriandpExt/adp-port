@@ -1,6 +1,6 @@
 import { RenderGridCardProps } from "@/types";
 
-import { memo, ReactElement, useRef, useState } from "react";
+import { memo, ReactElement, useRef } from "react";
 
 import Grid2 from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
@@ -9,6 +9,17 @@ import Typography from "@mui/material/Typography";
 import { projectData } from "@/utils";
 
 import { Container } from "./common";
+import { styled, useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
+
+const StyledImage = styled("img")({
+  backgroundRepeat: "no-repeat",
+  objectFit: "contain",
+  "&:hover": {
+    transition: "transform 0.5s ease, opacity 0.3s ease",
+    transform: "scale(1.3)",
+  },
+});
 
 const getRandomColor = () => {
   const colors = [
@@ -25,7 +36,9 @@ const getRandomColor = () => {
 
 const RenderGridCard = memo((props: RenderGridCardProps): ReactElement => {
   const { src, title } = props;
-  const [isHovered, setIsHovered] = useState(false);
+
+  const theme = useTheme();
+  const isMedium = useMediaQuery(theme.breakpoints.up("md"));
 
   const randomColor = useRef(getRandomColor());
 
@@ -36,24 +49,11 @@ const RenderGridCard = memo((props: RenderGridCardProps): ReactElement => {
           backgroundColor: randomColor.current,
           borderRadius: "4px",
           height: "400px",
-          padding: "3rem",
+          padding: isMedium ? "3rem" : null,
           overflow: "hidden",
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
-        <img
-          loading="lazy"
-          src={src}
-          width={"100%"}
-          height={"100%"}
-          style={{
-            backgroundRepeat: "no-repeat",
-            objectFit: "contain",
-            transition: "transform 0.3s ease, opacity 0.3s ease",
-            transform: isHovered ? "scale(1.3)" : "scale(1)",
-          }}
-        />
+        <StyledImage loading="lazy" src={src} width={"100%"} height={"100%"} />
       </Box>
 
       <Typography variant="h5" marginTop={2}>

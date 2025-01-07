@@ -5,6 +5,7 @@ import { IconButton, Stack, styled, Typography } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
+import { useSocialMediaStore } from "@/store/useSocialMediaStore";
 import bgImage from "@/assets/bg-light.png";
 
 const StyledContainer = styled("section")({
@@ -27,13 +28,7 @@ const AboutSection = styled("div")({
 });
 
 const Hero = (): ReactElement => {
-  const toggleGithub = () => {
-    window.open("https://github.com/adriandpExt", "_blank");
-  };
-
-  const toggleLinkedin = () => {
-    window.open("https://www.linkedin.com/in/adrian-d-p/", "_blank");
-  };
+  const { toggleGithub, toggleLinkedin } = useSocialMediaStore();
 
   return (
     <StyledContainer>

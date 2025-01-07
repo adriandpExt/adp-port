@@ -1,5 +1,8 @@
 import { ReactElement, useEffect } from "react";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import { styled } from "@mui/material/styles";
 
 import Navigation from "@/components/common/Navigation";
@@ -8,10 +11,7 @@ import Expertise from "@/components/Expertise";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
-import Footer from "./components/Footer";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Footer from "@/components/Footer";
 
 const Layout = styled("main")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
