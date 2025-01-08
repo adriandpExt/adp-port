@@ -1,24 +1,49 @@
-import { ReactElement, useEffect } from "react";
+import {
+  lazy,
+  PropsWithChildren,
+  ReactElement,
+  Suspense,
+  useEffect,
+} from "react";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { styled } from "@mui/material/styles";
 
-import Navigation from "@/components/common/Navigation";
-import Hero from "@/components/Hero";
-import Expertise from "@/components/Expertise";
-import Timeline from "@/components/Timeline";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+const Navigation = lazy(() => import("@/components/common/Navigation"));
+const Hero = lazy(() => import("@/components/Hero"));
+const Expertise = lazy(() => import("@/components/Expertise"));
+const Timeline = lazy(() => import("@/components/Timeline"));
+const Projects = lazy(() => import("@/components/Projects"));
+const Contact = lazy(() => import("@/components/Contact"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 import bgImage from "@/assets/bg-pattern.svg";
+import { Stack, Typography } from "@mui/material";
 
 const Layout = styled("main")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   backgroundImage: `url(${bgImage})`,
 }));
+
+const LazyLoading = (props: PropsWithChildren): ReactElement => {
+  const { children } = props;
+
+  return (
+    <Suspense
+      fallback={
+        <Stack justifyContent="center" alignItems="center" height="90vh">
+          <Typography variant="h2" color="warning" fontWeight={700}>
+            LOADING ...
+          </Typography>
+        </Stack>
+      }
+    >
+      <Layout>{children}</Layout>
+    </Suspense>
+  );
+};
 
 const App = (): ReactElement => {
   useEffect(() => {
@@ -30,7 +55,7 @@ const App = (): ReactElement => {
   }, []);
 
   return (
-    <Layout>
+    <LazyLoading>
       <Navigation />
       <Hero />
       <Expertise />
@@ -38,7 +63,7 @@ const App = (): ReactElement => {
       <Projects />
       <Contact />
       <Footer />
-    </Layout>
+    </LazyLoading>
   );
 };
 
