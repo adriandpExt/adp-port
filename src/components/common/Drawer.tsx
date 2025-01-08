@@ -7,7 +7,8 @@ import MuiDrawer from "@mui/material/Drawer";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import useScroll from "@/store/useScroll";
+
+import useNavigation from "@/store/useNavigation";
 
 interface IDrawer {
   item: LabelValue[];
@@ -41,7 +42,7 @@ const MenuButton = styled(Typography)({
 export const Drawer = (props: IDrawer) => {
   const { item, open, onClose } = props;
 
-  const { scrollToSection } = useScroll();
+  const { scrollToSection } = useNavigation();
 
   const handleToScroll = (id: string): void => {
     scrollToSection(id);

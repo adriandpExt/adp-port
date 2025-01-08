@@ -6,6 +6,15 @@ export const theme = createTheme({
       default: "#e1edfc",
       paper: "#2A3335",
     },
+    warning: {
+      main: "#F97300",
+    },
+  },
+  typography: {
+    fontFamily: "Atma-Meduim",
+    h2: {
+      fontFamily: "Rubik",
+    },
   },
   components: {
     // Customizing the default style of Card component
@@ -13,7 +22,18 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#fcfbf7",
-          boxShadow: "10px 10px 10px rgba(0, 0, 0, 0.1)",
+          boxShadow: "1px 4px 10px 1px rgb(180, 180, 180)",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: "#FFFFFF",
+          gap: "0.5rem",
+          alignItems: "center",
+          backgroundColor: "#0C0C0C",
+          boxShadow: "8px 8px 1px 0px #F97300",
         },
       },
     },

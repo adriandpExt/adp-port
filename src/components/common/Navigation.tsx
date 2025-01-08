@@ -13,7 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import { navItems } from "@/utils";
-import useScroll from "@/store/useScroll";
+
 import useNavigation from "@/store/useNavigation";
 
 import Drawer from "./Drawer";
@@ -24,8 +24,6 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 }));
 
 const MenuButton = styled(Button)({
-  backgroundColor: "#0C0C0C",
-  color: "white",
   boxShadow: "4px 4px 1px 0px #F97300",
   transition: "background-color 0.3s ease, color 0.3s ease",
   ":hover": {
@@ -36,8 +34,8 @@ const MenuButton = styled(Button)({
 });
 
 export const Navigation = (): ReactElement => {
-  const { scrollToSection } = useScroll();
-  const { isOpen, toggleDrawerClose, toggleDrawerOpen } = useNavigation();
+  const { isOpen, toggleDrawerClose, toggleDrawerOpen, scrollToSection } =
+    useNavigation();
   const theme = useTheme();
   const isMatches = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -60,11 +58,12 @@ export const Navigation = (): ReactElement => {
   return (
     <StyledAppBar position="fixed">
       <Toolbar sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <IconButton>
+        <IconButton onClick={() => scrollToSection("home")}>
           <Typography
             color="warning"
             fontWeight={600}
-          >{`<ADRIAN />`}</Typography>
+            fontFamily={"Rubik"}
+          >{`<ADRIAN.DEV />`}</Typography>
         </IconButton>
         {isMatches ? (
           renderMenuButton(navItems)

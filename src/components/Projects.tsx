@@ -2,14 +2,15 @@ import { RenderGridCardProps } from "@/types";
 
 import { memo, ReactElement, useRef } from "react";
 
+import { styled, useTheme } from "@mui/material/styles";
 import Grid2 from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Card from "@mui/material/Card";
 
 import { projectData } from "@/utils";
 
 import { Container } from "./common";
-import { styled, useTheme } from "@mui/material/styles";
-import { Card, useMediaQuery } from "@mui/material";
 
 const StyledImage = styled("img")({
   backgroundRepeat: "no-repeat",
@@ -56,7 +57,12 @@ const RenderGridCard = memo((props: RenderGridCardProps): ReactElement => {
         <StyledImage loading="lazy" src={src} width={"100%"} height={"100%"} />
       </Card>
 
-      <Typography variant="h5" marginTop={2} fontWeight={600}>
+      <Typography
+        variant="h6"
+        marginTop={2}
+        fontWeight={600}
+        fontFamily={"Atma-Bold"}
+      >
         {title}
       </Typography>
     </Grid2>

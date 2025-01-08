@@ -2,7 +2,10 @@ import { ExpertiseData } from "@/types";
 
 import { ReactElement } from "react";
 
-import { Chip, Grid2, Stack, Typography } from "@mui/material";
+import Grid2 from "@mui/material/Grid2";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Chip from "@mui/material/Chip";
 
 import { expertiseData } from "@/utils";
 

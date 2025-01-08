@@ -2,6 +2,9 @@ import { TimelineData } from "@/types";
 
 import { ReactElement } from "react";
 
+import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -19,8 +22,6 @@ import {
   TimelineSeparator,
 } from "@mui/lab";
 
-import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { timelineData } from "@/utils";
 
 import { Container } from "./common";

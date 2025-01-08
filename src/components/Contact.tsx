@@ -7,17 +7,12 @@ import { AtSignIcon, SendHorizontal, User2Icon } from "lucide-react";
 import { useFormik } from "formik";
 import emailjs from "@emailjs/browser";
 
-import { styled } from "@mui/material/styles";
-import {
-  Button,
-  Card,
-  InputAdornment,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-
-import { Container } from "./common";
+import Card from "@mui/material/Card";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 import {
   contactFormInitial,
@@ -27,33 +22,7 @@ import {
   serviceKey,
 } from "@/utils";
 
-const Loader = styled("div")`
-  width: 25px;
-  padding: 5px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #ffffff;
-  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
-  -webkit-mask: var(--_m);
-  mask: var(--_m);
-  -webkit-mask-composite: source-out;
-  mask-composite: subtract;
-  animation: l3 1s infinite linear;
-
-  @keyframes l3 {
-    to {
-      transform: rotate(1turn);
-    }
-  }
-`;
-
-const StyledButton = styled(Button)({
-  gap: "0.5rem",
-  alignItems: "center",
-  backgroundColor: "#0C0C0C",
-  color: "#FFFFFF",
-  boxShadow: "8px 8px 1px 0px #F97300",
-});
+import { Container, Loader } from "./common";
 
 const Contact = (): ReactElement => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -168,7 +137,7 @@ const Contact = (): ReactElement => {
               }
             />
 
-            <StyledButton type="submit" variant="contained" fullWidth>
+            <Button type="submit" variant="contained" fullWidth>
               {isLoading ? (
                 <Loader />
               ) : (
@@ -176,7 +145,7 @@ const Contact = (): ReactElement => {
                   Send message <SendHorizontal size={18} />
                 </>
               )}
-            </StyledButton>
+            </Button>
           </Stack>
         </Card>
       </form>
@@ -185,7 +154,7 @@ const Contact = (): ReactElement => {
 
   return (
     <Container id="contact" title="Contact me">
-      <Typography variant="body2" paddingBottom={"3rem"}>
+      <Typography variant="body1" paddingBottom={"3rem"}>
         Got a project waiting to be realized? Let's collaborate and make it
         happen!
       </Typography>

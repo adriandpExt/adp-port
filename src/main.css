@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Rubik";
+  src: url("../src/assets/font/RubikVinyl-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atma-Regular";
+  src: url("../src/assets/font/Atma-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atma-Meduim";
+  src: url("../src/assets/font/Atma-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atma-Bold";
+  src: url("../src/assets/font/Atma-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

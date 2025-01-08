@@ -15,7 +15,12 @@ export const Container = (props: Partial<ContainerProps>): ReactElement => {
 
   return (
     <MuiContainer id={id} maxWidth="lg" sx={{ padding: "5rem 1rem", ...sx }}>
-      <Typography variant="h2" fontWeight={500} paddingBottom={"2rem"}>
+      <Typography
+        variant="h2"
+        fontWeight={500}
+        paddingBottom={"2rem"}
+        color="warning"
+      >
         {title}
       </Typography>
       {children}

@@ -1,9 +1,12 @@
 import { ReactElement } from "react";
 
-import { IconButton, Stack, styled, Typography } from "@mui/material";
-
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 import { useSocialMediaStore } from "@/store/useSocialMediaStore";
 import bgImage from "@/assets/bg-light.png";
@@ -15,7 +18,6 @@ const StyledContainer = styled("section")({
 const AboutSection = styled("div")({
   display: "flex",
   gap: "30px",
-  justifyContent: "flex-start",
   alignItems: "center",
   width: "100%",
   padding: "0px 15%",
@@ -27,6 +29,12 @@ const AboutSection = styled("div")({
   backgroundPosition: "center",
 });
 
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  ":hover": {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
+
 const Hero = (): ReactElement => {
   const { toggleGithub, toggleLinkedin } = useSocialMediaStore();
 
@@ -35,13 +43,13 @@ const Hero = (): ReactElement => {
       <AboutSection>
         <Stack>
           <Stack sx={{ flexDirection: "row" }}>
-            <IconButton size="large" onClick={toggleGithub}>
-              <GitHubIcon fontSize="large" />
-            </IconButton>
+            <StyledIconButton size="medium" onClick={toggleGithub}>
+              <GitHubIcon fontSize="large" color="warning" />
+            </StyledIconButton>
 
-            <IconButton size="large" onClick={toggleLinkedin}>
-              <LinkedInIcon fontSize="large" />
-            </IconButton>
+            <StyledIconButton size="medium" onClick={toggleLinkedin}>
+              <LinkedInIcon fontSize="large" color="warning" />
+            </StyledIconButton>
           </Stack>
 
           <Typography variant="h2" fontWeight={700}>
