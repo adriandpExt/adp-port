@@ -31,13 +31,23 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   flexDirection: "column",
 }));
 
-const MenuButton = styled(Typography)({
+const MenuButton = styled(Typography)(({ theme }) => ({
+  color: theme.palette.common.white,
   padding: "1rem",
   backgroundColor: "#0C0C0C",
-  color: "white",
   boxShadow: "8px 10px 1px 0px #F97300",
   transition: "background-color 0.3s ease, color 0.3s ease",
-});
+}));
+
+const StyledCloseIcon = styled(X)(({ theme }) => ({
+  color: theme.palette.common.black,
+  padding: "1rem",
+  transition: "transform 0.3s ease",
+  display: "inline-block",
+  ":hover": {
+    transform: "rotate(90deg)",
+  },
+}));
 
 export const Drawer = (props: IDrawer) => {
   const { item, open, onClose } = props;
@@ -56,15 +66,10 @@ export const Drawer = (props: IDrawer) => {
       elevation={16}
       variant="temporary"
       anchor="right"
+      transitionDuration={1000}
     >
       <StyledPaper>
-        <X
-          size={100}
-          strokeWidth={3}
-          onClick={onClose}
-          color="black"
-          style={{ padding: "1rem" }}
-        />
+        <StyledCloseIcon size={100} strokeWidth={3} onClick={onClose} />
 
         <Stack
           height={"100%"}
