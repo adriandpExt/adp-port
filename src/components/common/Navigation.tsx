@@ -69,7 +69,7 @@ export const Navigation = (): ReactElement => {
           renderMenuButton(navItems)
         ) : (
           <IconButton onClick={toggleDrawerOpen}>
-            <Menu color="black" size={42} strikethroughThickness={3} />
+            <Menu color="#F97300" size={42} strikethroughThickness={3} />
           </IconButton>
         )}
       </Toolbar>

@@ -9,6 +9,9 @@ export const theme = createTheme({
     warning: {
       main: "#F97300",
     },
+    common: {
+      black: "#0C0C0C",
+    },
   },
   typography: {
     fontFamily: "Atma-Meduim",

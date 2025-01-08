@@ -12,6 +12,10 @@ import Typography from "@mui/material/Typography";
 
 import { useSocialMediaStore } from "@/store/useSocialMediaStore";
 
+const MuiFooter = styled("footer")({
+  padding: "3rem",
+});
+
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   ":hover": {
     backgroundColor: theme.palette.warning.main,
@@ -22,15 +26,17 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
 const Footer = (): ReactElement => {
   const { toggleGithub, toggleLinkedin } = useSocialMediaStore();
 
+  const date = new Date();
+
   return (
-    <footer style={{ padding: "3rem" }}>
+    <MuiFooter>
       <Stack direction={"row"} alignItems={"center"} justifyContent={"center"}>
         <StyledIconButton size="small" onClick={toggleGithub}>
-          <GitHubIcon fontSize="small" />
+          <GitHubIcon fontSize="medium" />
         </StyledIconButton>
 
         <StyledIconButton size="small" onClick={toggleLinkedin}>
-          <LinkedInIcon fontSize="small" />
+          <LinkedInIcon fontSize="medium" />
         </StyledIconButton>
       </Stack>
 
@@ -40,12 +46,14 @@ const Footer = (): ReactElement => {
         justifyContent={"center"}
         gap={1}
       >
-        <Typography variant="body1">Made with</Typography>
+        <Typography variant="body1">
+          {date.getFullYear()} | Made with
+        </Typography>
 
         <Heart color="#F97300" fill="#F97300" />
         <Typography variant="body1">by Adrian.</Typography>
       </Stack>
-    </footer>
+    </MuiFooter>
   );
 };
 

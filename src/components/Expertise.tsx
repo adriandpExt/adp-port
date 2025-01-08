@@ -13,8 +13,13 @@ import { Container } from "./common";
 
 const Expertise = (): ReactElement => {
   const renderGridComponent = (data: ExpertiseData[]): ReactElement[] => {
-    return data.map((item) => (
-      <Grid2 key={item.title} size={6}>
+    return data.map((item, idx) => (
+      <Grid2
+        key={item.title}
+        size={6}
+        data-aos="fade-down"
+        data-aos-delay={idx * 500}
+      >
         <Stack gap={2} paddingY={1}>
           <Typography variant="h5" fontWeight={500}>
             {item.title}
@@ -58,7 +63,6 @@ const Expertise = (): ReactElement => {
         spacing={2}
         flexWrap={"wrap"}
         columns={{ xs: 4, sm: 8, md: 12 }}
-        data-aos="fade-up"
       >
         {renderGridComponent(expertiseData)}
       </Grid2>

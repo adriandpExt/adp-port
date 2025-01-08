@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 
 import useNavigation from "@/store/useNavigation";
 
+import bgImage from "@/assets/bg-pattern.svg";
 interface IDrawer {
   item: LabelValue[];
   open: boolean;
@@ -26,6 +27,7 @@ const StyledDrawer = styled(MuiDrawer)({
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
+  backgroundImage: `url(${bgImage})`,
   height: "100%",
   display: "flex",
   flexDirection: "column",
@@ -40,12 +42,13 @@ const MenuButton = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledCloseIcon = styled(X)(({ theme }) => ({
-  color: theme.palette.common.black,
+  color: theme.palette.warning.main,
   padding: "1rem",
   transition: "transform 0.3s ease",
   display: "inline-block",
   ":hover": {
     transform: "rotate(90deg)",
+    color: theme.palette.common.black,
   },
 }));
 
@@ -66,7 +69,7 @@ export const Drawer = (props: IDrawer) => {
       elevation={16}
       variant="temporary"
       anchor="right"
-      transitionDuration={1000}
+      transitionDuration={1500}
     >
       <StyledPaper>
         <StyledCloseIcon size={100} strokeWidth={3} onClick={onClose} />
@@ -78,15 +81,16 @@ export const Drawer = (props: IDrawer) => {
           alignItems={"center"}
           gap={3}
         >
-          {item.map((nav) => (
+          {item.map((nav, idx) => (
             <MenuButton
               key={nav.label}
               variant="h3"
               fontWeight={600}
               onClick={() => handleToScroll(nav.value)}
-              data-aos="fade-down"
-              data-aos-easing="linear"
+              data-aos="fade-right"
+              data-aos-easing="ease-in-sine"
               data-aos-duration="1500"
+              data-aos-delay={idx * 500}
             >
               {nav.label.toUpperCase()}
             </MenuButton>

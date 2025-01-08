@@ -44,7 +44,6 @@ const StyledTimelineOppositeContent = styled(TimelineOppositeContent)({
 
 const StyledTimelineDot = styled(TimelineDot)({
   backgroundColor: "#F97300",
-
   padding: "1rem",
 });
 
@@ -94,6 +93,7 @@ const Timeline = (): ReactElement => {
           align="center"
           fontWeight={500}
           data-aos="fade-right"
+          data-aos-delay={ids * 500}
         >
           {item.duration}
         </StyledTimelineOppositeContent>
@@ -106,7 +106,7 @@ const Timeline = (): ReactElement => {
           <StyledTimelineConnector data-aos="zoom-in" />
         </TimelineSeparator>
 
-        <StyledTimelineContent data-aos="fade-left">
+        <StyledTimelineContent data-aos="fade-left" data-aos-delay={ids * 500}>
           <Card
             elevation={10}
             sx={{
@@ -138,7 +138,7 @@ const Timeline = (): ReactElement => {
           <StyledTimelineConnector data-aos="zoom-in" />
         </TimelineSeparator>
 
-        <StyledTimelineContent data-aos="fade-up">
+        <StyledTimelineContent data-aos="fade-up" data-aos-delay={ids * 500}>
           <Typography variant="h6" component="span">
             {item.jobTitle}
           </Typography>

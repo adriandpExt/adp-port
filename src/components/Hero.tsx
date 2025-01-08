@@ -2,7 +2,6 @@ import { ReactElement } from "react";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";

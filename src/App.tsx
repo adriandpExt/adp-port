@@ -13,8 +13,11 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+import bgImage from "@/assets/bg-pattern.svg";
+
 const Layout = styled("main")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
+  backgroundImage: `url(${bgImage})`,
 }));
 
 const App = (): ReactElement => {
